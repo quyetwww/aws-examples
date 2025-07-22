@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "== list bucket"
+
+aws s3api list-buckets --query "Buckets[*].{Name:Name,CreationDate:CreationDate}" --output json \
+| jq -r '.[] | "\(.CreationDate) \(.Name)"' \
+| sort
