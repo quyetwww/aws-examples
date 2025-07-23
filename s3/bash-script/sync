@@ -9,8 +9,8 @@ if [ -z "$1" ]; then
 fi
 
 # Check for filename prefix
-if [ -z "$1" ]; then
-  echo "There is need a bucket name .eg /bucket my-bucket-name."
+if [ -z "$2" ]; then
+  echo "There is need a bucket name .eg /bucket my-bucket-name. there need file name prefix"
   exit 1
 fi
 
@@ -20,7 +20,7 @@ FILENAME_PREFIX=$2
 OUTPUT_DIR="/tmp/s3-bash-script"
 
 # remove folder if it already exist
-rm -r $OUTPUT_DIR
+# rm -r $OUTPUT_DIR
 
 mkdir -p $OUTPUT_DIR
 
@@ -32,7 +32,7 @@ echo "📁 Creating $COUNT random files..."
 
 for ((i=1; i<=$NUM_FILES; i++)); do
 
-    random_filename="$OUTPUT_DIR/$FILENAME_PREFIX_$i.txt"
+    random_filename="$OUTPUT_DIR/${FILENAME_PREFIX}_${i}.txt"
 
     dd if=/dev/urandom of="$random_filename" bs=1024 count=$((RANDOM % 1024 + 1)) 2>/dev/null
 
