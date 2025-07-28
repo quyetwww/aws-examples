@@ -1,0 +1,12 @@
+{
+  "name": "AWS Dev Env",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "aws-cli": "latest"
+  },
+  "extensions": [
+    "amazonwebservices.aws-toolkit-vscode"
+  ]
+}
