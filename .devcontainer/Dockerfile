@@ -20,3 +20,10 @@ RUN apt-get update && apt-get install -y gnupg software-properties-common \
     && echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" > /etc/apt/sources.list.d/hashicorp.list \
     && apt-get update \
     && apt-get install -y terraform
+# Cài Node.js (cần để chạy CDK)
+RUN apt-get update && apt-get install -y curl \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
+
+# Cài AWS CDK
+RUN npm install -g aws-cdk
